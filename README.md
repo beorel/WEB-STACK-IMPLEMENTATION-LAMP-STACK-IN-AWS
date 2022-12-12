@@ -1,122 +1,164 @@
 # WEB-STACK-IMPLEMENTATION-LAMP-STACK-IN-AWS
-## Install Apache using Ubuntu’s package manager ‘apt’:
+## 1. Install Apache using Ubuntu’s package manager ‘apt’:
 ### step 1 - Update a list of packages in package manager
+
 sudo apt update
 
-###step 2 - Run apache2 package installation
-sudo apt install apache2
+### step 2 - Run apache2 package installation
+
+sudo apt install apache2...
+
 When i ran step 2 i came across “Package apache is not available, but is referred to by another package. This may mean that the package is missing, has been obsoleted, or is only available from another source “
+
 ![](https://github.com/beorel/WEB-STACK-IMPLEMENTATION-LAMP-STACK-IN-AWS/blob/main/images/Screenshot%20(98).png)
-I went to browse for the error message and came across
-https://askubuntu.com/questions/990203/trying-to-install-apache-but-it-says-package-apache2-is-not-available
+
+I went to browse for the error message and [came across](https://askubuntu.com/questions/990203/trying-to-install-apache-but-it-says-package-apache2-is-not-available)
+
 
 I came across a solution there  which is: 
-Step 1- sudo apt update && sudo apt upgrade 
-Step 2- sudo apt install apache2
+#### Step 1- sudo apt update && sudo apt upgrade 
+#### Step 2- sudo apt install apache2
 
-When i ran the step 1 - sudo apt update && sudo apt upgrade, i came across some pop out messages that required me to click OK, it is shown in the images
+When i ran the **step 1 - sudo apt update && sudo apt upgrade**, i came across some pop out messages that required me to **click OK**, it is shown in the images
 
 ![](https://github.com/beorel/WEB-STACK-IMPLEMENTATION-LAMP-STACK-IN-AWS/blob/main/images/Screenshot%20(100).png)
 
 ![](https://github.com/beorel/WEB-STACK-IMPLEMENTATION-LAMP-STACK-IN-AWS/blob/main/images/Screenshot%20(101).png)
 
 After which It took a while to complete the installation it stopped at 99% after over 20minutes, i reloaded the page and started my commands from the beginning
-# step 1 - Update a list of packages in package manager
-sudo apt update
+#### step 1 - Update a list of packages in package manager
+*sudo apt update*
  
-#step 2- Run apache2 package installation
-sudo apt install apache2
+#### step 2- Run apache2 package installation
+*sudo apt install apache2*
 
-#step 3- To verify that apache2 is running as a Service in our OS, use following command
-sudo systemctl status apache2
+#### step 3- To verify that apache2 is running as a Service in our OS, use following command
+*sudo systemctl status apache2*
 
 If it is green and running, then you did everything correctly – you have just launched your first Web Server in the Clouds!
  
 ![](https://github.com/beorel/WEB-STACK-IMPLEMENTATION-LAMP-STACK-IN-AWS/blob/main/images/Screenshot%20(106).png)
 
-Before we can receive any traffic by our Web Server, we need to open TCP port 80 which is the default port that web browsers use to access web pages on the Internet
+Before we can receive any traffic by our Web Server, we need to open TCP port 80 which is the default port that web browsers use to access web pages on the Internet.
+
 As we know, we have TCP port 22 open by default on our EC2 machine to access it via SSH, so we need to add a rule to EC2 configuration to open inbound connection through port 80:
+
 Now it is time for us to test how our Apache HTTP server can respond to requests from the Internet.
-Open a web browser of your choice and try to access following url
-http://<Public-IP-Address>:80
+
+Open a web browser of your choice and try to access following url **http://Public-IP-Address:80**
+
 For example: 
 
 ![](https://github.com/beorel/WEB-STACK-IMPLEMENTATION-LAMP-STACK-IN-AWS/blob/main/images/Screenshot%20(106).png)
 
-The IP address on this server is 3.85.233.120
-So just open a new tab on your browser and enter http://3.85.233.120:80
+The IP address on this server is **3.85.233.120**
+
+So just open a new tab on your browser and enter **http://3.85.233.120:80**
+
 If you see the following page, then your web server is now correctly installed and accessible through your AWS.
 
 ![](https://github.com/beorel/WEB-STACK-IMPLEMENTATION-LAMP-STACK-IN-AWS/blob/main/images/Screenshot%20(116).png)
 
-##STEP 2 — INSTALLING MYSQL
-Now that you have a web server up and running, you need to install a Database Management System (DBMS) to be able to store and manage data for your site in a relational database. MySQL is a popular relational database management system used within PHP environments, so we will use it in our project.
+## 2. INSTALLING MYSQL
+Now that you have a web server up and running, you need to install a Database Management System (DBMS) to be able to store and manage data for your site in a relational database. 
+
+MySQL is a popular relational database management system used within PHP environments, so we will use it in our project.
+
 Again, use ‘apt’ to acquire and install this software:
-$ sudo apt install mysql-server
+
+**$ sudo apt install mysql-server**
+
 When prompted, confirm installation by typing Y, and then ENTER.
+
 When the installation is finished, log in to the MySQL console by typing:
-$ sudo mysql
+
+**$ sudo mysql**
+
 This will connect to the MySQL server as the administrative database user root, which is inferred by the use of sudo when running this command. You should see output like this:
-Welcome to the MySQL monitor.  Commands end with; or \g.
-Your MySQL connection id is 11
-Server version: 8.0.22-0ubuntu0.20.04.3 (Ubuntu)
+
+**Welcome to the MySQL monitor.  Commands end with; or \g.**
+
+**Your MySQL connection id is 11**
+
+**Server version: 8.0.22-0ubuntu0.20.04.3 (Ubuntu)**
  
-Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+**Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.**
  
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
+**Oracle is a registered trademark of Oracle Corporation and/or its**
+**affiliates. Other names may be trademarks of their respective**
+**owners.**
  
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+**Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.**
  
-mysql> 
+**mysql>**
 
 using mysql_native_password as default authentication method. We’re defining this user’s password as PassWord.1.
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'PassWord.1'; 
+
+**ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'PassWord.1';** 
  
-Remember the password is : PassWord.1
+Remember the password is : **PassWord.1**
+
 Exit the MySQL shell with:
-mysql> exit 
+
+**mysql>** **exit**
  
  
 Start the interactive script by running:
-$ sudo mysql_secure_installation
+
+**$ sudo mysql_secure_installation**
+
 When you’re finished, test if you’re able to log in to the MySQL console by typing:
-$ sudo mysql -p
+
+**$ sudo mysql -p**
+
 Notice the -p flag in this command, which will prompt you for the password used after changing the root user password.
-Remember the password is : PassWord.1
+
+Remember the password is : **PassWord.1**
+
 To exit the MySQL console, type:
-mysql> exit
+
+**mysql>** **exit**
  
 Your MySQL server is now installed and secured. 
  
-STEP 3 — INSTALLING PHP
+## 3 — INSTALLING PHP
 
 To install these 3 packages at once, run:
-sudo apt install php libapache2-mod-php php-mysql
+
+**sudo apt install php libapache2-mod-php php-mysql**
+
 Once the installation is finished, you can run the following command to confirm your PHP version:
-php -v
+
+**php -v**
 
 You should see
 
 ![](https://github.com/beorel/WEB-STACK-IMPLEMENTATION-LAMP-STACK-IN-AWS/blob/main/images/Screenshot%20(110).png)
+
 At this point, your LAMP stack is completely installed and fully operational.
-Linux (Ubuntu)
-Apache HTTP Server
-MySQL
-PHP
+- Linux (Ubuntu)
+- Apache HTTP Server
+- MySQL
+- PHP
 
-
-
-STEP 4 — CREATING A VIRTUAL HOST FOR YOUR WEBSITE USING APACHE
+## 4 — CREATING A VIRTUAL HOST FOR YOUR WEBSITE USING APACHE
 
 In this project, you will set up a domain called projectlamp, but you can replace this with any domain of your choice.
+
 Create the directory for projectlamp using ‘mkdir’ command as follows:
-sudo mkdir /var/www/projectlamp
+
+**sudo mkdir /var/www/projectlamp**
+
 Next, assign ownership of the directory with your current system user:
- sudo chown -R $USER:$USER /var/www/projectlamp
-Then, create and open a new configuration file in Apache’s sites-available directory using your preferred command-line editor. Here, we’ll be using vi or vim (They are the same by the way):
-sudo vi /etc/apache2/sites-available/projectlamp.conf
+
+**sudo chown -R $USER:$USER /var/www/projectlamp**
+
+Then, create and open a new configuration file in Apache’s sites-available directory using your preferred command-line editor. 
+
+Here, we’ll be using vi or vim (They are the same by the way):
+
+**sudo vi /etc/apache2/sites-available/projectlamp.conf**
+
 This will create a new blank file. Paste in the following bare-bones configuration by hitting on i on the keyboard to enter the insert mode, and paste the text:
 <VirtualHost *:80>
     ServerName projectlamp
