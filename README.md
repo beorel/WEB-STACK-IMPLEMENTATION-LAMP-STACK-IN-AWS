@@ -2,11 +2,11 @@
 ## 1. Install Apache using Ubuntu’s package manager ‘apt’:
 ### step 1 - Update a list of packages in package manager
 
-sudo apt update
+**sudo apt update**
 
 ### step 2 - Run apache2 package installation
 
-sudo apt install apache2...
+**sudo apt install apache2...**
 
 When i ran step 2 i came across “Package apache is not available, but is referred to by another package. This may mean that the package is missing, has been obsoleted, or is only available from another source “
 
@@ -161,7 +161,6 @@ Here, we’ll be using vi or vim (They are the same by the way):
 
 This will create a new blank file. Paste in the following bare-bones configuration by hitting on i on the keyboard to enter the insert mode, and paste the text:
 
-> 
 > **<** **VirtualHost *:80** **>**
 >
 >>**ServerName projectlamp**
@@ -229,9 +228,7 @@ Create an index.html file in that location so that we can test that the virtual 
 **Note:** pick everything at once, don't break the text.
 > sudo echo 'Hello LAMP from hostname' $(curl -s http://169.254.169.254/latest/meta-data/public-hostname) 'with public IP' $(curl -s http://169.254.169.254/latest/meta-data/public-ipv4) > /var/www/projectlamp/index.html
 
-Now go to your browser and try to open your website URL using IP address:
-
-*http://<Public-IP-Address>:80*
+Now go to your browser and try to open your website URL using IP address: **http://** **Public-IP-Address:80**
 
 You should see this:
 
@@ -250,23 +247,38 @@ Once maintenance is over, the index.html is renamed or removed from the document
 In case you want to change this behavior, you’ll need to edit the /etc/apache2/mods-enabled/dir.conf file and change the order in which the index.php file is listed within the DirectoryIndex directive:
 
 **sudo vim /etc/apache2/mods-enabled/dir.conf**
- 
-Press i to insert the text
-<IfModule mod_dir.c>
-        #Change this:
-        #DirectoryIndex index.html index.cgi index.pl index.php index.xhtml index.htm
-        #To this:
-        DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
-</IfModule>
+
+Press **i** to insert the text
+> **<** **IfModule mod_dir.c** **>**
+>
+>> #Change this:
+>> 
+>> #DirectoryIndex index.html index.cgi index.pl index.php index.xhtml index.htm
+>> 
+>> #To this:
+>> 
+>> DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
+>> 
+> **<** **/IfModule>**
+
 After saving and closing the file, you will need to reload Apache so the changes take effect:
-sudo systemctl reload apache2
+
+**sudo systemctl reload apache2**
+
 Finally, we will create a PHP script to test that PHP is correctly installed and configured on your server.
+
 Now that you have a custom location to host your website’s files and folders, we’ll create a PHP test script to confirm that Apache is able to handle and process requests for PHP files.
+
 Create a new file named index.php inside your custom web root folder:
-vim /var/www/projectlamp/index.php
+
+**vim /var/www/projectlamp/index.php**
+
 This will open a blank file. Add the following text, which is valid PHP code, inside the file:
-<?php
-phpinfo();
+
+**<** **?php**
+
+**phpinfo();**
+
 When you are finished, save and close the file, refresh the page and you will see a page similar to this:
 
 ![](https://github.com/beorel/WEB-STACK-IMPLEMENTATION-LAMP-STACK-IN-AWS/blob/main/images/Screenshot%20(112).png)
